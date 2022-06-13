@@ -31,6 +31,12 @@ public class KontaktyController {
           "Zlínský kraj"
   );
 
+  public static final List<String> POHLAVI = Arrays.asList(
+          "muž",
+          "žena",
+          "jiná"
+  );
+
   //TODO 4 Přidat konstantu „POHLAVI“, která bude obsahovat „List“ typů „String“ se seznamem pohlaví. Do seznamu zadejte alespoň hodnoty „muž“ a „žena“.
   private final PresentationModel<OsobaBean> model;
   private final Action novyAction;
@@ -62,6 +68,10 @@ public class KontaktyController {
 
   private void vypoctiStavAkci() {
     //TODO 1 Tlačítko „Uložit“ zpřístupnit jenom tehdy, když je zadané jmené, příjmení, a datum narození.
+
+    OsobaBean osoba = model.getBean();
+    boolean enabled = osoba.getJmeno() != null && osoba.getPrijmeni() != null && osoba.getDatumNarozeni() != null;
+    ulozitAction.setEnabled(enabled);
   }
 
   public void handleNovy() {
